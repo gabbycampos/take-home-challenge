@@ -4,7 +4,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core'
+import { Icon, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
     items: {
@@ -23,8 +23,8 @@ function User({ id, firstName, lastName, email, handleDelete, handleUpdate }) {
             <Card className={classes.items}>
                 <CardHeader
                     action={
-                        <IconButton onClick={remove}>
-                            🗑
+                        <IconButton onClick={update}>
+                            ✏️
                         </IconButton>
                     }
                     title={firstName}
@@ -35,6 +35,13 @@ function User({ id, firstName, lastName, email, handleDelete, handleUpdate }) {
                         {email}
                     </Typography>
                 </CardContent>
+                <CardHeader
+                    action={
+                        <IconButton onClick={remove}>
+                            🗑
+                        </IconButton>
+                    }
+                />
             </Card>
         </div>
     )

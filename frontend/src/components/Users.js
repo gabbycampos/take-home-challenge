@@ -21,6 +21,9 @@ function Users() {
     const [users, setUsers] = useState([]);
 
     // get all users
+    useEffect(() => {
+        fetchUsers();
+    }, [])
     const fetchUsers = () => {
         // debugger
         axios.get(url).then((response) => {
@@ -29,9 +32,6 @@ function Users() {
             setUsers(getUsers)
         }).catch(error => console.log(error));
     }
-    useEffect(() => {
-        fetchUsers();
-    }, [])
 
     // update a user
     const handleUpdate = (id, formData) => {
