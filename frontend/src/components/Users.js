@@ -27,26 +27,22 @@ function Users() {
     const fetchUsers = () => {
         // debugger
         axios.get(url).then((response) => {
-            const getUsers = response.data;
-            console.log(response)
-            setUsers(getUsers)
+            setUsers(response.data)
         }).catch(error => console.log(error));
     }
 
     // update a user
-    const handleUpdate = (id, formData) => {
-        const updateData = {...id, formData}
-        axios.put(`${url}/${id}`, updateData).then((response) => {
-            setUsers(users => 
-                users.map(user => 
-                    user.id === id ? response.data: user));
+    const update = (id, updatedUser) => {
+        debugger;
+        axios.put(`${url}/${id}`, updatedUser).then((response) => {
+            debugger;
+            setUsers(users => users.map(user => user.id === id ? response.data: updatedUser));
         }).catch(error => console.log(error));
     }
 
     // delete a user
-    const handleDelete = id => {
+    const remove = id => {
         axios.delete(`${url}/${id}`).then((response) => {
-            const user = response.data;
             setUsers(users.filter(user => user.id !== id));
         })
     }
@@ -54,13 +50,13 @@ function Users() {
     // user components
     const userComponents = users.map(user => (
         <User 
-            handleDelete={handleDelete}
+            remove={remove}
             key={user.id}
             id={user.id}
             firstName={user.firstName}
             lastName={user.lastName}
             email={user.email}
-            handleUpdate={handleUpdate}
+            update={update}
         />
     ))
     return (
